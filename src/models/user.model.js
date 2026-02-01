@@ -60,10 +60,10 @@ const userSchema=new Schema({
     timestamps:true
 })
 
-user.Schema.pre("save", async function(next){
+userSchema.pre("save", async function(next){
     if(!this.isModified("password"))
         return next();
-    this.passwords=await bcryprt.hash(this.password,10)
+    this.passwords=await bcrypt.hash(this.password,10)
     next()
     
 })
@@ -103,4 +103,4 @@ userSchema.methods.generateRefreshToken=function()
 }
 
 
-export const user=mongoose.model("User",userSchema);
+export const User=mongoose.model("User",userSchema);
