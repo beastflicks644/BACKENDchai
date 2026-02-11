@@ -4,6 +4,7 @@ import { User } from "../models/user.model.js"
 import { uploadOnCloudinary } from "../utils/cloudinary.js"
 import { ApiResponse } from "../utils/ApiResponse.js"
 import jwt from "jsonwebtoken"
+import mongoose from "mongoose";
 
 
 
@@ -379,7 +380,7 @@ const updateUserCoverImage=asyncHandler(async(req,res)=>
               }
        ])
 
-       if(!channel?.lenght)
+       if(!channel?.length)
        {
               throw new ApiError(400,"Channel Does Not Exist")
        }
@@ -435,8 +436,8 @@ const getWatchHistory=asyncHandler(async(req,res)=>
                      }
               }
        ])
-})
-return res
+
+       return res
        .status(200)
        .json(
               new ApiResponse(
@@ -445,6 +446,8 @@ return res
                      "Watch History Fetched Successfully"
               )
        )
+})
+
 
 export { registerUser, 
        loginUser,
